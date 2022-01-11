@@ -25,6 +25,9 @@ static class Program
                 case "5":
                     VisualizarAnime();
                     break;
+                case "6":
+                    ListarAnimes18();
+                    break;
                 case "C":
                     Console.Clear();
                     break;
@@ -53,6 +56,15 @@ static class Program
             Console.WriteLine("#ID {0}: - {1} - {2}", anime.retornaId(), anime.retornaNome(), (excluido ? "Excluido" : ""));
         }
     }
+    private static void ListarAnimes18()
+    {
+        Console.WriteLine("Os animes para maiores de 18 anos são: ");
+        foreach(Anime anime in gerenciadorAnimes.animesMaiores18())
+        {
+            Console.WriteLine(anime.Nome);
+        }
+         
+    }
     private static void InserirAnime()
     {
         Console.WriteLine("Adicione um novo anime");
@@ -64,16 +76,20 @@ static class Program
         int generoEscolhido = int.Parse(Console.ReadLine());
         Console.WriteLine("Digite o Nome do Anime: ");
         string nomeAnime = Console.ReadLine();
-        Console.WriteLine("Digite o ano de lançamento do anime");
+        Console.WriteLine("Digite a classificação etária: ");
+        int classificacaoEscolhida = int.Parse(Console.ReadLine());
+        Console.WriteLine("Digite o ano de lançamento do anime: ");
         int anoEscolhido = int.Parse(Console.ReadLine());
-        Console.WriteLine("Digite a descrição do anime");
+        Console.WriteLine("Digite a descrição do anime: ");
         string descriçãoEscolhida = Console.ReadLine();
 
         Anime novoAnime = new Anime(id: gerenciadorAnimes.ProximoId(),
             genero: (Genero)generoEscolhido,
             nome: nomeAnime,
             descricao: descriçãoEscolhida,
-            ano: anoEscolhido
+            ano: anoEscolhido,
+            classificacaoEtaria: classificacaoEscolhida
+            
         );
         try
         {
@@ -99,16 +115,19 @@ static class Program
         int generoEscolhido = int.Parse(Console.ReadLine());
         Console.WriteLine("Digite o Nome do Anime: ");
         string nomeAnime = Console.ReadLine();
-        Console.WriteLine("Digite o ano de lançamento do anime");
+        Console.WriteLine("Digite a classificação etária: ");
+        int classificacaoEscolhida = int.Parse(Console.ReadLine());
+        Console.WriteLine("Digite o ano de lançamento do anime: ");
         int anoEscolhido = int.Parse(Console.ReadLine());
-        Console.WriteLine("Digite a descrição do anime");
+        Console.WriteLine("Digite a descrição do anime: ");
         string descriçãoEscolhida = Console.ReadLine();
 
         Anime atualizaAnime = new Anime(id: idAnime,
             genero: (Genero)generoEscolhido,
             nome: nomeAnime,
             descricao: descriçãoEscolhida,
-            ano: anoEscolhido
+            ano: anoEscolhido,
+            classificacaoEtaria: classificacaoEscolhida
         );
         gerenciadorAnimes.Atualiza(idAnime, atualizaAnime);
 
@@ -136,6 +155,7 @@ static class Program
             "[3] - Atualizar anime\n" +
             "[4] - Excluir anime\n" +
             "[5] - Visualizar anime\n" +
+            "[6] - Visualizar animes para maiores de 18 anos\n" +
             "[X] - Sair\n" +
             "[C] - Limpar Tela");
         Console.WriteLine();

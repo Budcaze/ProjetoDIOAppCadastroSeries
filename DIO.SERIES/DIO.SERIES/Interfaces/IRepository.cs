@@ -14,6 +14,7 @@ namespace DIO.SERIES.Interfaces
         void Exclui(int id);
         void Atualiza(int id, T entidade);
         int ProximoId();
+        List<T> animesMaiores18();
 
     }
 }

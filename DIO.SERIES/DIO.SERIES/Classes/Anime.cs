@@ -8,19 +8,21 @@ namespace DIO.SERIES
 {
     public class Anime : EntidadeBase
     {
-        private String Nome { get; set; }
+        public String Nome { get;  private set; }
         private String Descricao { get; set; }
         private Genero Genero { get; set; }
         private int Ano { get; set; }
         private bool Excluido { get; set; }
+        public int ClassificacaoEtaria { get; private set; }
 
-        public Anime(int id, Genero genero, string nome, string descricao, int ano)
+        public Anime(int id, Genero genero, string nome, string descricao, int ano, int classificacaoEtaria)
         {
             this.Genero = genero;
             this.Nome = nome;  
             this.Descricao = descricao;
             this.Ano = ano;
             this.id = id;
+            this.ClassificacaoEtaria = classificacaoEtaria;
             this.Excluido = false;
         }
         
@@ -48,6 +50,7 @@ namespace DIO.SERIES
             retorno += "Nome: " + this.Nome + Environment.NewLine;
             retorno += "Descrição: " + this.Descricao + Environment.NewLine;
             retorno += "Ano de Lançamento: " + this.Ano + Environment.NewLine;
+            retorno += "Classificação Etária:  " + this.ClassificacaoEtaria + Environment.NewLine;
             retorno += "Exluido: " + this.Excluido + Environment.NewLine;
             return retorno;
         }

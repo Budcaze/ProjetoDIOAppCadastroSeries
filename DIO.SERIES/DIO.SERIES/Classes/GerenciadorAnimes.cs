@@ -10,6 +10,9 @@ namespace DIO.SERIES
     public class GerenciadorAnimes : IRepository<Anime>
     {
         private List<Anime> listaAnimes = new List<Anime>();
+
+       
+
         public void Atualiza(int id, Anime entidade)
         {
             listaAnimes[id] = entidade;
@@ -38,6 +41,18 @@ namespace DIO.SERIES
         public List<Anime> Lista()
         {
             return listaAnimes;
+        }
+        public List<Anime> animesMaiores18()
+        {
+            List<Anime> animes18 = new List<Anime>();
+            foreach(var anime in listaAnimes)
+            {
+                if(anime.ClassificacaoEtaria >= 18)
+                {
+                    animes18.Add(anime);
+                }
+            }
+            return animes18;
         }
 
         public int ProximoId()
