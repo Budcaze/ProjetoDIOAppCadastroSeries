@@ -75,7 +75,14 @@ static class Program
             descricao: descriçãoEscolhida,
             ano: anoEscolhido
         );
-        gerenciadorAnimes.Insere(novoAnime);
+        try
+        {
+          gerenciadorAnimes.Insere(novoAnime);
+        }catch(Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        
          
 
 

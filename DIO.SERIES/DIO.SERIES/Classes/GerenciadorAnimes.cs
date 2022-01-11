@@ -22,7 +22,17 @@ namespace DIO.SERIES
 
         public void Insere(Anime entidade)
         {
+            foreach(var anime in listaAnimes)
+            {
+                if (anime.Equals(entidade))
+                {
+                    throw new Exception("Anime já cadastrado");
+
+                }
+
+            }
             listaAnimes.Add(entidade);
+            
         }
 
         public List<Anime> Lista()

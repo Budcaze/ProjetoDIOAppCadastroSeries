@@ -51,5 +51,18 @@ namespace DIO.SERIES
             retorno += "Exluido: " + this.Excluido + Environment.NewLine;
             return retorno;
         }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is Anime anime &&
+                   Nome == anime.Nome &&
+                   Genero == anime.Genero &&
+                   Ano == anime.Ano;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Nome, Genero, Ano);
+        }
     }
 }
