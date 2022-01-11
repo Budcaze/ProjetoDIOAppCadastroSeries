@@ -51,6 +51,11 @@ namespace DIO.SERIES
                 {
                     animes18.Add(anime);
                 }
+
+            }
+            if(animes18.Count == 0)
+            {
+                throw new Exception("Não existe animes para maiores de 18 anos");
             }
             return animes18;
         }

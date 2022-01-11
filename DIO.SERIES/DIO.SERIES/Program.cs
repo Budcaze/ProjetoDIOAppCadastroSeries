@@ -58,11 +58,18 @@ static class Program
     }
     private static void ListarAnimes18()
     {
-        Console.WriteLine("Os animes para maiores de 18 anos são: ");
-        foreach(Anime anime in gerenciadorAnimes.animesMaiores18())
+        try
         {
-            Console.WriteLine(anime.Nome);
+        Console.WriteLine("Os animes para maiores de 18 anos são: ");
+                foreach(Anime anime in gerenciadorAnimes.animesMaiores18())
+                {
+                    Console.WriteLine(anime.Nome);
+                }
+        }catch(Exception ex)
+        {
+            Console.WriteLine(ex.Message);
         }
+        
          
     }
     private static void InserirAnime()
