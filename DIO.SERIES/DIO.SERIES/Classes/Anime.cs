@@ -32,6 +32,10 @@ namespace DIO.SERIES
         {
             return this.id;
         }
+        public bool retornaExcluido()
+        {
+            return this.Excluido;
+        }
 
         public void Excluir()
         {
@@ -44,6 +48,7 @@ namespace DIO.SERIES
             retorno += "Nome: " + this.Nome + Environment.NewLine;
             retorno += "Descrição: " + this.Descricao + Environment.NewLine;
             retorno += "Ano de Lançamento: " + this.Ano + Environment.NewLine;
+            retorno += "Exluido: " + this.Excluido + Environment.NewLine;
             return retorno;
         }
     }

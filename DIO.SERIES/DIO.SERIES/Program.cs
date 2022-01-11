@@ -17,13 +17,13 @@ static class Program
                     InserirAnime();
                     break;
                 case "3":
-                    //AtualizarAnime();
+                    AtualizarAnime();
                     break;
                 case "4":
-                    //ExcluirAnime();
+                    ExcluirAnime();
                     break;
                 case "5":
-                    //VisualizarAnime();
+                    VisualizarAnime();
                     break;
                 case "C":
                     Console.Clear();
@@ -49,7 +49,8 @@ static class Program
         }
         foreach(var anime in lista)
         {
-            Console.WriteLine("#ID {0}: - {1}", anime.retornaId(), anime.retornaNome());
+            var excluido = anime.retornaExcluido();
+            Console.WriteLine("#ID {0}: - {1} - {2}", anime.retornaId(), anime.retornaNome(), (excluido ? "Excluido" : ""));
         }
     }
     private static void InserirAnime()
@@ -79,6 +80,45 @@ static class Program
 
 
     }
+    private static void AtualizarAnime()
+    {
+        Console.WriteLine("Digite o id do anime: ");
+        int idAnime = int.Parse(Console.ReadLine());
+        foreach (int i in Enum.GetValues(typeof(Genero)))
+        {
+            Console.WriteLine("{0}-{1}", i, Enum.GetName(typeof(Genero), i));
+        }
+        Console.WriteLine("Digite o gênero entre as opções acima: ");
+        int generoEscolhido = int.Parse(Console.ReadLine());
+        Console.WriteLine("Digite o Nome do Anime: ");
+        string nomeAnime = Console.ReadLine();
+        Console.WriteLine("Digite o ano de lançamento do anime");
+        int anoEscolhido = int.Parse(Console.ReadLine());
+        Console.WriteLine("Digite a descrição do anime");
+        string descriçãoEscolhida = Console.ReadLine();
+
+        Anime atualizaAnime = new Anime(id: idAnime,
+            genero: (Genero)generoEscolhido,
+            nome: nomeAnime,
+            descricao: descriçãoEscolhida,
+            ano: anoEscolhido
+        );
+        gerenciadorAnimes.Atualiza(idAnime, atualizaAnime);
+
+    }
+    private static void ExcluirAnime() {
+        Console.WriteLine("Digite o id do anime: ");
+        int idExcluir = int.Parse(Console.ReadLine());
+
+        gerenciadorAnimes.Exclui(idExcluir);
+    }
+    private static void VisualizarAnime()
+    {
+        Console.WriteLine("Digite o id do anime: ");
+        int indiceAnime = int.Parse(Console.ReadLine());
+        var anime = gerenciadorAnimes.RetornaPorId(indiceAnime);
+        Console.WriteLine(anime);
+    }
     private static string ObterOpcaoUsuario()
     {
         Console.WriteLine();
@@ -87,7 +127,7 @@ static class Program
         Console.WriteLine("[1] - Listar Anime\n" +
             "[2] - Inserir novo anime\n" +
             "[3] - Atualizar anime\n" +
-            "[4] - Excluir animen\n" +
+            "[4] - Excluir anime\n" +
             "[5] - Visualizar anime\n" +
             "[X] - Sair\n" +
             "[C] - Limpar Tela");
