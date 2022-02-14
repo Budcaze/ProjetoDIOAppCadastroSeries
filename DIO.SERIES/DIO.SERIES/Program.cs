@@ -47,7 +47,7 @@ static class Program
         var lista = gerenciadorAnimes.Lista();
         if(lista.Count == 0)
         {
-            Console.WriteLine("Nenhuma série cadastrada");
+            Console.WriteLine("Nenhum anime cadastrada");
             return;
         }
         foreach(var anime in lista)
